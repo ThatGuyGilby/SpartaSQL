@@ -145,3 +145,20 @@ SELECT
 *
 FROM EmployeeTerritories
 WHERE TerritoryID BETWEEN 06800 AND 09999;
+
+-- String concatenation
+
+SELECT
+Region,
+CompanyName,
+CONCAT(City, ', ' , Country) AS "City"
+FROM Customers
+WHERE Region IS NOT NULL;
+
+-- arithmetic operators
+SELECT
+UnitPrice,
+Quantity,
+Discount,
+UnitPrice * Quantity AS "Gross Total"
+FROM `Order Details`
