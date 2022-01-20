@@ -50,7 +50,7 @@ VALUES
 ('Squirtle',  (SELECT ElementID FROM Elements WHERE ElementName ='Water'), 'After birth, its back swells and hardens into a shell. Powerfully sprays foam from its mouth.');
 
 -- 5. Select values from the tables
-SELECT -- select 'SpeciesName' from 's' and 'ElementName' from 'e' when the ElementID from 's' and 'e' are equal (Join statement)
+SELECT -- select 'SpeciesName' from 's' and 'ElementName' from 'e' when the ElementID from 's' and 'e' are equal (w join clause)
 s.SpeciesName,
 e.ElementName
 FROM Species s

@@ -49,4 +49,15 @@ CategoryID,
 SUM(ReorderLevel) AS "Average Reorder Level"
 FROM Products
 GROUP BY CategoryId
-ORDER BY SUM(ReorderLevel) DESC;
+ORDER BY `Average Reorder Level` DESC;
+
+-- Q5
+SELECT
+p.SupplierID,
+s.CompanyName,
+AVG(p.UnitsOnOrder) AS "Average Units on Order"
+FROM Products p
+INNER JOIN Suppliers s
+ON p.SupplierID = s.SupplierID
+Group BY p.SupplierID, s.CompanyName
+ORDER BY `Average Units on Order` DESC;
