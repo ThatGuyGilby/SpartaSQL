@@ -16,3 +16,38 @@ LOCATE(' ', PostalCode) AS "Space Found",
 Country
 FROM Customers
 WHERE Country = "UK";
+
+-- date functions
+SELECT
+NOW(),
+CURDATE();
+
+SELECT
+ShippedDate,
+DATE_ADD(ShippedDate, INTERVAL 10 DAY)
+FROM Orders
+WHERE DATE_ADD(ShippedDate, INTERVAL 10 DAY) IS NOT NULL;
+
+SELECT
+DATE_ADD(NOW(), INTERVAL 5 YEAR);
+
+SELECT
+FLOOR(DATEDIFF(NOW(), '2000-07-04') / 365.2425);
+
+SELECT
+YEAR(NOW());
+
+SELECT
+OrderDate,
+DATE_ADD(ShippedDate, INTERVAL 5 DAY) AS "Due Date",
+DATEDIFF(ShippedDate, OrderDate) AS "Ship Days"
+FROM Orders
+ORDER BY DATEDIFF(ShippedDate, OrderDate) DESC;
+
+SELECT
+DATE_FORMAT(OrderDate, "%d %m %Y")
+FROM Orders;
+
+SELECT
+STRFTIME("%d %m %Y", OrderDate)
+FROM Orders;
