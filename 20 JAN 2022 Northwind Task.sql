@@ -46,7 +46,7 @@ FROM Retirement_details;
 -- Q4
 SELECT
 CategoryID,
-SUM(ReorderLevel) AS "AVG Reorder Level"
+SUM(ReorderLevel) AS "Average Reorder Level"
 FROM Products
 GROUP BY CategoryId
-ORDER BY "AVG Reorder Level" DESC;
+ORDER BY SUM(ReorderLevel) DESC;
