@@ -15,12 +15,12 @@ SELECT
 CONCAT(FirstName, " ", LastName) AS "Name",
 FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) AS "Age",
 CASE
-	WHEN FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) >= 65
-	THEN 'Retired'
-	When FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) >= 60
-	THEN 'Retirement due'
-	ELSE 'More than 5 years to go'
-    END AS "Retirement Status"
+WHEN FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) >= 65
+THEN 'Retired'
+When FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) >= 60
+THEN 'Retirement due'
+ELSE 'More than 5 years to go'
+END AS "Retirement Status"
 FROM Employees;
 
 -- Q3 EXT
@@ -31,12 +31,12 @@ SELECT
 CONCAT(FirstName, " ", LastName) AS "Full Name",
 FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) AS "Age",
 CASE
-	WHEN FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) >= 65
-	THEN 'Retired'
-	When FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) >= 60
-	THEN 'Retirement due'
-	ELSE 'More than 5 years to go'
-    END AS "Retirement Status"
+WHEN FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) >= 65
+THEN 'Retired'
+When FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) >= 60
+THEN 'Retirement due'
+ELSE 'More than 5 years to go'
+END AS "Retirement Status"
 FROM Employees;
 
 SELECT
@@ -57,7 +57,7 @@ p.SupplierID,
 s.CompanyName,
 AVG(p.UnitsOnOrder) AS "Average Units on Order"
 FROM Products p
-INNER JOIN Suppliers s
-ON p.SupplierID = s.SupplierID
+INNER JOIN Suppliers s ON p.SupplierID = s.SupplierID
 Group BY p.SupplierID, s.CompanyName
-ORDER BY `Average Units on Order` DESC;
+ORDER BY `Average Units on Order` DESC
+LIMIT 1;

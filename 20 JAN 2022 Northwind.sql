@@ -54,12 +54,12 @@ OrderId,
 OrderDate,
 ShippedDate,
 CASE
-	WHEN DATEDIFF(ShippedDate, OrderDate) < 5
-	THEN 'Early'
-	WHEN DATEDIFF(ShippedDate, OrderDate) < 10
-	THEN 'On Time'
-	ELSE 'Overdue'
-	END AS "Status"
+WHEN DATEDIFF(ShippedDate, OrderDate) < 5
+THEN 'Early'
+WHEN DATEDIFF(ShippedDate, OrderDate) < 10
+THEN 'On Time'
+ELSE 'Overdue'
+END AS "Status"
 FROM orders
 WHERE ShippedDate IS NOT NULL;
 
@@ -94,3 +94,13 @@ FROM EmployeeTerritories et
 INNER JOIN Employees e ON et.EmployeeId = e.EmployeeId
 GROUP BY et.EmployeeId, e.FirstName, e.Lastname
 HAVING COUNT(TerritoryId) > 5;
+
+-- multiple joins
+SELECT
+p.ProductName,
+p.UnitPrice,
+s.CompanyName AS "Supplier",
+c.CategoryName AS "Category"
+FROM Products p
+INNER JOIN Suppliers s ON p.SupplierID = s.SupplierID
+INNER JOIN Categories c ON p.CategoryID = c.CategoryID;
