@@ -28,7 +28,7 @@ DROP VIEW IF EXISTS Retirement_details;
 
 CREATE VIEW Retirement_details AS
 SELECT
-CONCAT(FirstName, " ", LastName) AS "Name",
+CONCAT(FirstName, " ", LastName) AS "Full Name",
 FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) AS "Age",
 CASE
 	WHEN FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) >= 65
@@ -42,3 +42,11 @@ FROM Employees;
 SELECT
 *
 FROM Retirement_details;
+
+-- Q4
+SELECT
+CategoryID,
+SUM(ReorderLevel) AS "AVG Reorder Level"
+FROM Products
+GROUP BY CategoryId
+ORDER BY "AVG Reorder Level" DESC;

@@ -62,3 +62,35 @@ CASE
 	END AS "Status"
 FROM orders
 WHERE ShippedDate IS NOT NULL;
+
+-- aggregate functions (HAVING acts as a WHERE clause for aggrefgates)
+SELECT
+SUM(UnitsOnOrder) AS "Total On Order",
+AVG(UnitsOnOrder) AS "AVG On Order",
+MIN(UnitsOnOrder) AS "Min On order",
+MAX(UnitsOnOrder) AS "Max On order"
+FROM Products;
+
+SELECT
+SupplierId,
+SUM(UnitsOnOrder) AS "Total On Order"
+FROM Products
+GROUP BY SupplierId;
+
+SELECT
+SupplierId,
+SUM(UnitsOnOrder) AS "Total On Order"
+FROM Products
+GROUP BY SupplierId
+HAVING SUM(UnitsOnOrder) > 50;
+
+-- join
+SELECT
+et.EmployeeId,
+e.FirstName,
+e.Lastname,
+COUNT(et.TerritoryId) AS "No. of territories covered"
+FROM EmployeeTerritories et
+INNER JOIN Employees e ON et.EmployeeId = e.EmployeeId
+GROUP BY et.EmployeeId, e.FirstName, e.Lastname
+HAVING COUNT(TerritoryId) > 5;
