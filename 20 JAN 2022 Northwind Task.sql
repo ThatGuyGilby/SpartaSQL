@@ -58,6 +58,46 @@ s.CompanyName,
 AVG(p.UnitsOnOrder) AS "Average Units on Order"
 FROM Products p
 INNER JOIN Suppliers s ON p.SupplierID = s.SupplierID
-Group BY p.SupplierID, s.CompanyName
+GROUP BY p.SupplierID, s.CompanyName
 ORDER BY `Average Units on Order` DESC
 LIMIT 1;
+
+-- Q6
+SELECT
+o.OrderID,
+o.OrderDate,
+o.Freight,
+c.CompanyName AS 'Customer Name',
+CONCAT(e.FirstName, " ", e.LastName) AS 'Employee Name'
+FROM Orders o
+INNER JOIN Customers c ON o.CustomerID = c.CustomerID
+INNER JOIN Employees e ON o.EmployeeID = e.EmployeeID
+GROUP BY o.OrderID, o.OrderDate, o.Freight, c.CompanyName;
+
+-- Q7
+SELECT
+od.OrderID,
+od.ProductID,
+od.UnitPrice,
+od.Quantity,
+od.Discount,
+p.Discontinued
+FROM `Order Details` od
+LEFT JOIN Products p ON od.ProductID = p.ProductID
+WHERE od.ProductID NOT IN
+(
+	SELECT ProductID
+	FROM Products
+    WHERE Discontinued != 1
+);
+
+SELECT
+od.OrderID,
+od.ProductID,
+od.UnitPrice,
+od.Quantity,
+od.Discount,
+p.Discontinued
+FROM `Order Details` od
+LEFT JOIN Products p ON od.ProductID = p.ProductID
+WHERE p.Discontinued = 1

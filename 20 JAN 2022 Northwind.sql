@@ -104,3 +104,63 @@ c.CategoryName AS "Category"
 FROM Products p
 INNER JOIN Suppliers s ON p.SupplierID = s.SupplierID
 INNER JOIN Categories c ON p.CategoryID = c.CategoryID;
+
+-- Subqueries
+SELECT DISTINCT
+CompanyName AS 'Customer'
+FROM Customers
+WHERE CustomerID NOT IN
+(
+	SELECT CustomerID
+	FROM Orders
+);
+
+SELECT DISTINCT
+c.CompanyName AS 'Customer'
+FROM Customers c
+LEFT JOIN Orders  o ON c.CustomerID = o.CustomerID
+WHERE OrderID IS NULL;
+
+SELECT
+MAX(UnitPrice)
+FROM `Order Details`;
+
+SELECT
+OrderID,
+ProductID,
+UnitPrice,
+Quantity,
+Discount,
+(
+	SELECT
+	MAX(UnitPrice)
+	FROM `Order Details`
+) AS `Max Price`
+FROM `Order Details`;
+
+-- Unions
+-- UNION removes dupes
+-- UNION ALL does not
+
+SELECT City
+FROM Customers
+WHERE City IS NOT NULL
+UNION
+SELECT City
+FROM Employees
+ORDER BY City;
+
+SELECT
+City,
+CompanyName,
+'Customer' AS "Relationship"
+FROM Customers
+WHERE City IS NOT NULL
+UNION
+SELECT
+City,
+CompanyName,
+'Supplier' AS "Relationship"
+FROM Suppliers
+WHERE City IS NOT NULL
+ORDER BY City, CompanyName;
