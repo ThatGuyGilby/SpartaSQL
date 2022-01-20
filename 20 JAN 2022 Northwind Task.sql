@@ -6,5 +6,6 @@ WHERE LOCATE('''', ProductName) != 0; -- != 0 is not needed but is nice to visua
 
 -- Q2
 SELECT
-CONCAT(FirstName, " ", LastName, ": ", FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425), " years old") AS "Name and Age"
+CONCAT(FirstName, " ", LastName) AS "Name",
+FLOOR(DATEDIFF(NOW(), BirthDate) / 365.2425) AS "Age"
 FROM Employees;
