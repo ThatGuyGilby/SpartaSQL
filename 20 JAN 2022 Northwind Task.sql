@@ -84,11 +84,11 @@ od.Discount,
 p.Discontinued
 FROM `Order Details` od
 LEFT JOIN Products p ON od.ProductID = p.ProductID
-WHERE od.ProductID NOT IN
+WHERE od.ProductID IN
 (
 	SELECT ProductID
 	FROM Products
-    WHERE Discontinued != 1
+    WHERE Discontinued = 1
 );
 
 SELECT
