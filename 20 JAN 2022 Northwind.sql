@@ -48,6 +48,17 @@ SELECT
 DATE_FORMAT(OrderDate, "%d %m %Y")
 FROM Orders;
 
+-- case
 SELECT
-STRFTIME("%d %m %Y", OrderDate)
-FROM Orders;
+OrderId,
+OrderDate,
+ShippedDate,
+CASE
+	WHEN DATEDIFF(ShippedDate, OrderDate) < 5
+	THEN 'Early'
+	WHEN DATEDIFF(ShippedDate, OrderDate) < 10
+	THEN 'On Time'
+	ELSE 'Overdue'
+	END AS "Status"
+FROM orders
+WHERE ShippedDate IS NOT NULL;
