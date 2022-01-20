@@ -1,6 +1,6 @@
 -- Concatenation
 SELECT
-CONCAT(FirstName, " ", LastName, " ", HomePhone) AS "Employee Name and Contact Number"
+CONCAT(FirstName, " ", LastName, ": ", HomePhone) AS "Employee Name and Contact Number"
 FROM
 Employees;
 
@@ -16,6 +16,6 @@ UnitPrice,
 Quantity,
 Discount,
 (UnitPrice * Quantity) AS "Price Before Reductions",
-(UnitPrice * Quantity) * (1 - Discount) AS "Gross Total"
+(UnitPrice * Quantity) * (1 - Discount) AS "Discounted Total"
 FROM `Order Details`
 ORDER BY Discount DESC;
