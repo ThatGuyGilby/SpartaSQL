@@ -12,10 +12,10 @@ WHERE Region IS NOT NULL;
 
 -- Arithmetic Operators
 SELECT
-UnitPrice,
+ROUND(UnitPrice, 2) AS "Unit Price",
 Quantity,
-Discount,
-(UnitPrice * Quantity) AS "Price Before Reductions",
-(UnitPrice * Quantity) * (1 - Discount) AS "Discounted Total"
+ROUND(Discount, 2) AS "Discount",
+ROUND(UnitPrice * Quantity, 2) AS "Gross Total",
+ROUND((UnitPrice * Quantity) * (1 - Discount), 2) AS "Net Total"
 FROM `Order Details`
-ORDER BY Discount DESC;
+ORDER BY Discount DESC; -- could use "Gross Total" or 4 to order by the gross total
