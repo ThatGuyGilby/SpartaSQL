@@ -100,4 +100,4 @@ od.Discount,
 p.Discontinued
 FROM `Order Details` od
 LEFT JOIN Products p ON od.ProductID = p.ProductID
-WHERE p.Discontinued = 1
+WHERE p.Discontinued = 1;
